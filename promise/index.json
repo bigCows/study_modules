@@ -1,0 +1,52 @@
+{
+  "news": [
+    {
+      "id": 1,
+      "title": "title1",
+      "author": "author1"
+    },
+    {
+      "id": 2,
+      "title": "title2",
+      "author": "author2"
+    },
+    {
+      "id": 3,
+      "title": "title3",
+      "author": "author3"
+    }
+  ],
+  "article": [
+    {
+      "id": 1,
+      "content": "content1",
+      "newsId": 1
+    },
+    {
+      "id": 2,
+      "content": "content2",
+      "newsId": 1
+    },
+    {
+      "id": 3,
+      "content": "content3",
+      "newsId": 2
+    },
+    {
+      "id": 4,
+      "content": "content4",
+      "newsId": 2
+    },
+    {
+      "id": 5,
+      "content": "content5",
+      "newsId": 3
+    },
+    {
+      "id": 6,
+      "content": "content6",
+      "newsId": 3
+    }
+    
+  ]
+}
