@@ -1,5 +1,3 @@
-
-
 function myPromise (executor) {
   
   this.PENDING = 'pending'
@@ -41,18 +39,23 @@ function myPromise (executor) {
     
 }
 
+// http://www.promisesaplus.com  A+规范
+
 function resolvePromise (p2, x, resolve, reject) {
   // 防止等待自己完成
 
   if (p2 === x) { 
-    console.log('1213');
     return reject(new TypeError('Promise循环'))
   }
+  // A+2.3.3.3.3 如果同时调用了resolvePromise 和 rejectPromise，或者对同一个参数进行多次调用，执行第一个调用，并忽略后面所有调用
   let called;
   if ((typeof x === 'object' && x != null) || typeof x === 'function') { 
     try {
-      let then = x.then;
+      // A+2.3.3.1 使用变量保存x.then，防止重复获取Promise实例结果
+      let then = x.then; // A+2.3.3.2 x.then可能是通过Obje.defineProperty-getter定义的，可能会发生异常
       if (typeof then === 'function') { 
+        console.log(then);
+        // A+2.3.3.3 如果then是一个函数，将x的this绑给then，第一个参数是resolvePromise，第二个参数是rejectPromise,调用then
         then.call(x, y => {
           if (called) return;
           called = true;
@@ -71,7 +74,7 @@ function resolvePromise (p2, x, resolve, reject) {
       called = true;
       reject(e)
     }
-  } else {
+  } else {  
     resolve(x)
   }
 }
@@ -87,6 +90,7 @@ myPromise.prototype.then = function(onFulfilled,onRejected) {
     setTimeout(() => {
       try {
         let x = onFulfilled(this.value)
+        console.log('x',x)
         resolvePromise(p2,x,resolve,reject)
       } catch (error) {
         reject(error)
@@ -163,7 +167,7 @@ const p = new myPromise((resolve,reject) => {
     // resolve('success')
     // reject('fail')    
   // }, 1000);
-  reject('successpromise')
+  resolve('successpromise')
   // reject('fail')
 })
 
