@@ -83,10 +83,10 @@ function resolvePromise (p2, x, resolve, reject) {
 myPromise.prototype.then = function(onFulfilled,onRejected) {
   // A+规范，then方法返回一个promise
   let p2 = new myPromise((resolve,reject) => {
+    // 由于onFulfilled/onRejected是可选参数，所以需要判断是否为函数,不是函数将创建一个函数，将其赋给参数并返回
     onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : v => v
     onRejected = typeof onRejected === 'function' ? onRejected : r => {throw r}
     if(this.status === this.FULFILLED) {
-      // 由于onFulfilled/onRejected是可选参数，所以需要判断是否为函数,不是函数将创建一个函数，将其赋给参数并返回
     setTimeout(() => {
       try {
         let x = onFulfilled(this.value)

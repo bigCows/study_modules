@@ -1,0 +1,92 @@
+<!-- 
+    intersectionObserver 主要用于监听目标元素位置是否可见，通过该构造函数的observe(dom)方法，传入一个dom节点，即可监听该节点是否可见
+
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<style>
+    .div {
+      height: 2000px;
+    }
+
+    p {
+      height: 200px;
+      background: red;
+    }
+  </style>
+  
+  <body>
+  <div class="div"></div>
+
+  <p id="p">我出现啦</p>
+  
+  <!-- 通过元素位置关系方法-->
+  <script>
+    function isContain(dom) {
+      // 获取可视窗口的高度。
+      const screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      // 获取滚动条滚动的高度
+      const scrollTop = document.documentElement.scrollTop;
+      // 获取元素偏移的高度。就是距离可视窗口的偏移量。
+      const offsetTop = dom.offsetTop;
+      console.log(screenHeight, scrollTop, offsetTop);
+      return offsetTop - scrollTop <= screenHeight;
+    }
+    const p1 = document.getElementById("p");
+    window.onscroll = () => {
+      if (isContain(p1)) {
+        document.body.style.backgroundColor = 'blue'
+      } else {
+        document.body.style.backgroundColor = 'green'
+      }
+    }
+  </script>
+
+  <!-- 通过 getBoundingClientRect方法-->
+  <script>
+    // 只有当子元素全部出现在父元素中时，才会返回true。
+    // function isContain(dom) {
+    //   // q: 获取可视窗口的宽高
+    //   const totalHeight = window.innerHeight || document.documentElement.clientHeight;
+    //   const totalWidth = window.innerWidth || document.documentElement.clientWidth;
+    //   // 当滚动条滚动时，top, left, bottom, right时刻会发生改变。
+    //   // getBoundingClientRect() 获取元素的位置信息  top, left, bottom, right
+    //   const { top, right, bottom, left } = dom.getBoundingClientRect();
+    //   console.log(totalHeight, totalWidth);
+    //   console.log(top, right, bottom, left)
+    //   return (top >= 0 && left >= 0 && right <= totalWidth && top <= totalHeight);
+    // }
+
+    // const p2 = document.getElementById("p");
+    // window.onscroll = () => {
+    //   if (isContain(p2)) {
+    //     document.body.style.backgroundColor = 'blue'
+    //   } else {
+    //     document.body.style.backgroundColor = 'green'
+    //   }
+    // }
+  </script> 
+  
+  <!-- 通过new IntersectionObserver();  -->
+  <script>
+    // const observer = new IntersectionObserver((entries) => {
+    //     console.log(entries);
+    //     // 当元素进入可视区域时，entries[0].isIntersecting为true，否则为false。
+    //   if (entries[0].isIntersecting) {
+    //     document.body.style.backgroundColor = "blue"
+    //   } else {
+    //     document.body.style.backgroundColor = "green"
+    //   }
+    // }, { threshold: .1,rootMargin: "100px 0px " });
+    // const p3 = document.getElementById("p")
+    // observer.observe(p3)
+  </script>
+</body>
+</html>
