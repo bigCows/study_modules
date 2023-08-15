@@ -109,3 +109,68 @@ console.log(arrIterator.next());
     for (const iterator of info) {
       console.log(iterator);
     }
+
+  //   function c(){
+  //     var b = 1;
+  //     function a(){
+  //         console.log( b );
+  //         var b = 2;
+  //         console.log( b );
+  //     }
+  //     a();
+  //     console.log( b );
+  // }
+  // c();
+
+  // 执行顺序
+//   function c(){
+//     function a(){
+//         console.log( b );
+//         var b = 2;
+//         console.log( b );
+//     }
+//     var b
+//     b = 1;
+//     console.log( b );
+// }
+
+
+
+// function xxx() {
+//   console.log(typeof qname === 'undefined');
+//   if( typeof qname == 'undefined') {
+//     var qname ='b'
+//     console.log('111'+qname);
+//   } else {
+//     console.log('222'+qname);
+//   }
+// }
+
+// var qname;
+// qname = 'a'
+// xxx()
+
+
+// var qname ='b'
+
+// 执行顺序
+// var qname;
+// qname = 'a'
+
+
+// function xxx() {
+  // var qname
+//   if( typeof qname == 'undefined') {
+//      qname ='b'
+//     console.log('111'+qname);
+//   } else {
+//     console.log('222'+qname);
+//   }
+// }
+
+
+// 条件判断中的index和循环体内部的index不是同一个作用域
+// for (let index = 0; index < 3; index++) {
+//   let index = 1
+//   console.log(index); // 1 1 1
+// }

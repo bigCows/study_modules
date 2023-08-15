@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>intersectionObserver</title>
 </head>
 
 
@@ -76,17 +76,17 @@
   
   <!-- 通过new IntersectionObserver();  -->
   <script>
-    // const observer = new IntersectionObserver((entries) => {
-    //     console.log(entries);
-    //     // 当元素进入可视区域时，entries[0].isIntersecting为true，否则为false。
-    //   if (entries[0].isIntersecting) {
-    //     document.body.style.backgroundColor = "blue"
-    //   } else {
-    //     document.body.style.backgroundColor = "green"
-    //   }
-    // }, { threshold: .1,rootMargin: "100px 0px " });
-    // const p3 = document.getElementById("p")
-    // observer.observe(p3)
+    const observer = new IntersectionObserver((entries) => {
+        console.log(entries);
+        // 当元素进入可视区域时，entries[0].isIntersecting为true，否则为false。
+      if (entries[0].isIntersecting) {
+        document.body.style.backgroundColor = "blue"
+      } else {
+        document.body.style.backgroundColor = "green"
+      }
+    }, { threshold: .1,rootMargin: "100px 0px " });
+    const p3 = document.getElementById("p")
+    observer.observe(p3)
   </script>
 </body>
 </html>
