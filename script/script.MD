@@ -1,7 +1,7 @@
 ### defer async
 
   - defer: 异步加载，等到页面加载完毕后执行，按照加载顺序执行
-  - async: 异步加载，会阻塞dom渲染，加载完毕后立即执行
+  - async: 异步加载，会阻塞dom渲染，加载完毕后立即执行 可用于内联脚本(页面内部script标签包裹的js，而非通过src引入的js)
   - crossorigin: cors资源跨域时使用
   - type: 默认为text/javascript,以js的方式解析文本，也可以是module，以es6模块化的方式解析文本，module模式下，不会阻塞dom,异步加载，相当于defer
 

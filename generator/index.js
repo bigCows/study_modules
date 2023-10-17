@@ -40,7 +40,7 @@ function* fns() {
 }
 
 const generators = fns()
-console.log(generators.next('bbb')); 
+console.log(generators.next('bbb'));   // 第一次调用next方法时，传递的参数无效,因为没有上一个yield 
 // console.log(generators.return('next2')); // 迭代器内部的return方法能够中断生成器函数的执行，只要done为true,就会中断
 console.log(generators.throw('next2 throw error')); // 通过throw方法可以向生成器函数内部抛出一个错误  通过try catch可以捕获错误 通过throw方法抛出的错误，可以被外部捕获 通过throw方法抛出的错误，会导致生成器函数内部的代码终止执行，会导致done为true，会导致迭代器对象的value为undefined
 
@@ -87,6 +87,7 @@ function* fun() {
 }
 
 const sugar = fun()
+console.log(sugar.next());
 console.log(sugar.next());
 console.log(sugar.next());
 console.log(sugar.next());
